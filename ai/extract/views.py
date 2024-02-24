@@ -3,7 +3,7 @@ import PyPDF2
 import os
 
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.middleware.csrf import get_token
 from django.views.decorators.csrf import csrf_exempt
 
@@ -43,7 +43,7 @@ def extractInformationFromFile(filePath):
 
     # Use OpenAI API to extract information from the PDF
 
-    prompt = f"From the statement:\n{pdfContent}\nExtract all of following entities: "
+    prompt = f"From the statement:\n{pdfContent}\nIn JSON format, extract all of following entities: "
     for entity in ENTITIES:
         prompt += entity + ", "
 
