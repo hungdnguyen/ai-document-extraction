@@ -11,7 +11,7 @@ from openai import OpenAI
 from urllib.parse import urlsplit
 from decouple import config
 
-# Create your views here.
+# e.g: /extract/parseFile/?url=....sample-new-fidelity-acnt-stmt.pdf
 def parseFile(request):
     fileUrl = request.GET.get('url', None)
     urlPath = urlsplit(fileUrl).path
