@@ -29,7 +29,6 @@ def parseFile(request):
             print(f"Failed to download file. Status code: {response.status_code}")
             return HttpResponse("Failed to download file!")
 
-
     extractedOutput = extractInformationFromFile(filePath)    
 
     return HttpResponse(extractedOutput, content_type="text/plain")
