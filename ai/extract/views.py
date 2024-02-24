@@ -39,10 +39,8 @@ def extractInformationFromFile(filePath):
 
     # Read the content of the saved file
     pdfContent = readPdf(filePath)
-    print("Length of PDF Content:", len(pdfContent))
 
     # Use OpenAI API to extract information from the PDF
-
     prompt = f"From the statement:\n{pdfContent}\nIn JSON format, extract all of following entities: "
     for entity in ENTITIES:
         prompt += entity + ", "
