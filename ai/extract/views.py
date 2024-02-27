@@ -20,7 +20,7 @@ def parseFile(request):
     if os.path.isfile(filePath):
         print(f"File {filePath} existed.")
     else:
-        response = requests.get(fileUrl)
+        response = requests.get(fileUrl, timeout=60)
         if response.status_code == 200:
             with open(filePath, "wb") as file:
                 file.write(response.content)
