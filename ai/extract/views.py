@@ -1,15 +1,11 @@
-import requests
 import PyPDF2
 import os
-
-from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
-from django.middleware.csrf import get_token
-from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
 
 from openai import OpenAI
 from urllib.parse import urlsplit
 from decouple import config
+from security import safe_requests
 
 # e.g: /extract/parseFile/?url=....sample-new-fidelity-acnt-stmt.pdf
 def parseFile(request):
@@ -20,7 +16,7 @@ def parseFile(request):
     if os.path.isfile(filePath):
         print(f"File {filePath} existed.")
     else:
-        response = requests.get(fileUrl)
+        response = safe_requests.get(fileUrl)
         if response.status_code == 200:
             with open(filePath, "wb") as file:
                 file.write(response.content)
